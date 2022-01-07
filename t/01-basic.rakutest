@@ -1,0 +1,24 @@
+{
+    use lib 'lib';
+    use Test;
+    BEGIN %*ENV = %(
+        PATH => "/usr/local/bin",
+        TEST_OK_FILE => "t/resources/file.txt",
+        TEST_UNKNOWN_FILE => "t/resources/not-exist.txt",
+        TEST_BAD_FILE_BAD => "t/resources/file.txt"
+
+    );
+    {
+        use Env::File;
+
+        isa-ok %ENVFILE, Hash, "ENVFILE is a hash";
+        ok %ENVFILE<PATH>.defined, "ENVFILE<PATH> is defined";
+        ok %ENVFILE<PATH> ~~ m/"/bin"/, "ENVFILE<PATH> contains /bin";
+        ok not %ENVFILE<TEST_UNKNOWN>.defined, "Unknown file does not create variable";
+        ok not %ENVFILE<BAD_EXT>.defined, "BAD_EXT_FILE_BAD is not transformed";
+        is %ENVFILE<TEST_OK>, "my_test_value", "TEST_FILE variable successfully loaded into TEST";
+        say  %ENVFILE.keys().sort() ;
+        ok %ENVFILE.keys().sort() ~~ <PATH TEST_BAD_FILE_BAD TEST_OK  TEST_OK_FILE TEST_UNKNOWN_FILE>, "ENVFILE contains all required keys";
+        done-testing;
+    }
+}

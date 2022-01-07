@@ -1,0 +1,26 @@
+{
+  "auth": "zef:sthiriet",
+  "authors": [
+    "thisamu"
+  ],
+  "build-depends": [
+  ],
+  "depends": [
+    "Test::Mock"
+  ],
+  "description": "allow for \"$PASSWORD_FILE\" to fill in the value of \"$PASSWORD\" from a file, especially for Docker's secrets feature",
+  "license": "Artistic-2.0",
+  "name": "Env::File",
+  "perl": "6.d",
+  "provides": {
+    "Env::File": "lib/Env/File.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "https://github.com/sthiriet/Env-File.git",
+  "tags": [
+  ],
+  "test-depends": [
+  ],
+  "version": "0.0.1"
+}
