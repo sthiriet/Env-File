@@ -1,2 +1,4 @@
 .precomp/
 /Env-File-*
+.idea
+/Env-File.iml
